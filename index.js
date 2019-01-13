@@ -1,10 +1,5 @@
 function validatePIN(pin) {
-  return (
-    typeof pin === 'string' &&
-    !~pin.indexOf('.') &&
-    !isNaN(Number(pin)) &&
-    (pin.length === 4 || pin.length === 6)
-  );
+  return /^(\d{4}|\d{6})$/.test(pin);
 
   //return true or false
 }
@@ -69,4 +64,4 @@ function validatePIN(pin) {
 //   });
 // });
 
-console.log(validatePIN('1234'));
+console.log(validatePIN('-1234'));
