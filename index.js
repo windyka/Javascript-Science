@@ -8,16 +8,18 @@
 // Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
 // Note that the Java version expects a return value of null for an empty string or null.
 
-// FUNDAMENTALSSTRINGSARRAYS
+// FUNDAMENTAL STRING ARRAYS
 
-// Solution 2 --------------------------------------------------------------------
+// Solution 3 --------------------------------------------------------------------
 String.prototype.toJadenCase = function() {
-  return this.split(' ')
-    .map(function(word) {
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    })
-    .join(' ');
+  return this.replace(/(^|\s)[a-z]/g, function(x) {
+    return x.toUpperCase();
+  });
 };
+
+//   - This is the solution I would have liked to come up with.
+//   - Use regEx to find the first alpha-numeric element following a space
+//   - capitalize it.
 // -------------------------------------------------------------------------------
 
 // Sample Test
