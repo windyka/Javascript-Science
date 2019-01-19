@@ -1,27 +1,73 @@
-// Jaden Smith, the son of Will Smith, is the star of films such as The Karate Kid (2010) and After Earth (2013). Jaden is also known for some of his philosophy that he delivers via Twitter. When writing on Twitter, he is known for almost always capitalizing every word.
+// Basic Algorithm Scripting: Find the Longest Word in a String
 
-// Your task is to convert strings to how they would be written by Jaden Smith. The strings are actual quotes from Jaden Smith, but they are not capitalized in the same way he originally typed them.
+// Question;
+// function findLongestWordLength(str) {
+//   return str.length;
+// }
 
-// Example:
+// findLongestWordLength("The quick brown fox jumped over the lazy dog");
 
-// Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
-// Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
-// Note that the Java version expects a return value of null for an empty string or null.
+function findLongestWordLength(str) {
+  let r = str.split(' ');
+  let s = 0;
 
-// FUNDAMENTAL STRING ARRAYS
+  for (let i = 0; i < r.length; i++) {
+    if (r[i].length > s) {
+      s = r[i].length;
+    }
+  }
 
-// Solution 3 --------------------------------------------------------------------
-String.prototype.toJadenCase = function() {
-  return this.replace(/(^|\s)[a-z]/g, function(x) {
-    return x.toUpperCase();
-  });
-};
+  return s;
+}
 
-//   - This is the solution I would have liked to come up with.
-//   - Use regEx to find the first alpha-numeric element following a space
-//   - capitalize it.
-// -------------------------------------------------------------------------------
+console.log(
+  findLongestWordLength('The quick brown fox jumped over the lazy dog')
+);
+//  Output ;
+// 6
 
-// Sample Test
-// var str = "How can mirrors be real if our eyes aren't real";
-// Test.assertEquals(str.toJadenCase(), "How Can Mirrors Be Real If Our Eyes Aren't Real");
+// Intermediate Code Solution: ---------------------------------------------
+// Using .reduce()
+
+// function findLongestWordLength(s) {
+//   return s.split(' ')
+//     .reduce(function(x, y) {
+//       return Math.max(x, y.length)
+//     }, 0);
+// }
+
+// console.log(
+//   findLongestWordLength('The quick brown fox jumped over the lazy dog')
+// );
+//  Output ;
+// 6
+// -------------------------------------------------------------------------
+
+// Using recursiveness
+
+// function findLongestWordLength(str) {
+
+//   //split the string into individual words
+//   //(important!!, you'll see why later)
+//   str = str.split(" ");
+
+//   //str only has 1 element left that is the longest element,
+//   //return the length of that element
+//   if(str.length == 1){
+//     return str[0].length;
+//   }
+
+//   //if the first element's length is greater than the second element's (or equal)
+//   //remove the second element and recursively call the function)
+//   if(str[0].length >= str[1].length){
+//     str.splice(1,1);
+//     return findLongestWordLength(str.join(" "));
+//   }
+
+//   //if the second element's length is greater thant the first element's start
+//   //call the function past the first element
+//   if(str[0].length <= str[1].length){
+//     // from the first element to the last element inclusive.
+//     return findLongestWordLength(str.slice(1,str.length).join(" "));
+//   }
+// }
